@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}My Team | Altrium PerformanceFlow{% endblock %}
+{% block content %}
+<section class="page-heading"><div><span class="eyebrow">SUPERVISOR WORKSPACE</span><h1>My Team</h1><p>Employees currently assigned to your supervision.</p></div></section>
+<div class="team-grid">{% for employee in team_members %}<article class="team-card"><div class="avatar">{{ employee['full_name'][0]|upper }}</div><h2>{{ employee['full_name'] }}</h2><p>{{ employee['employee_code'] }} • {{ employee['job_title'] }}</p><span>{{ employee['department'] }}</span></article>{% else %}<div class="empty-panel">No employees are assigned to you yet.</div>{% endfor %}</div>
+{% endblock %}

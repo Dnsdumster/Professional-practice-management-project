@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Employees | Altrium PerformanceFlow{% endblock %}
+{% block content %}
+<section class="page-heading"><div><span class="eyebrow">PEOPLE DIRECTORY</span><h1>Employee Profiles</h1></div><button type="button" class="primary-button" id="openEmployeeDrawer">+ Add Employee</button></section>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, message in messages %}<div class="page-alert {{ category }}">{{ message }}</div>{% endfor %}{% endif %}{% endwith %}
+<section class="table-card">
+{% if employees %}<table><thead><tr><th>Employee</th><th>ID</th><th>Department</th><th>Job Title</th><th>Supervisor</th><th>Status</th></tr></thead><tbody>
+{% for employee in employees %}<tr><td><strong>{{ employee['full_name'] }}</strong><small>{{ employee['email'] }}</small></td><td>{{ employee['employee_code'] }}</td><td>{{ employee['department'] }}</td><td>{{ employee['job_title'] }}</td><td>{{ employee['supervisor_name'] or 'Not assigned' }}</td><td>{{ employee['status'] }}</td></tr>{% endfor %}
+</tbody></table>{% else %}<div class="empty-panel">No employees have been created yet.</div>{% endif %}
+</section>
+<div class="drawer-backdrop" id="employeeBackdrop"></div>
+<aside class="drawer" id="employeeDrawer"><div class="drawer-header"><div><span class="eyebrow">NEW PROFILE</span><h2>Add Employee</h2></div><button type="button" id="closeEmployeeDrawer">×</button></div>
+<form method="POST" action="{{ url_for('add_employee') }}" class="employee-form" id="employeeForm">
+<label>Full Name<input type="text" name="full_name" required></label><label>Employee ID<input type="text" name="employee_code" required></label><label>Work Email<input type="email" name="email" required></label><label>Department<input type="text" name="department" required></label><label>Job Title<input type="text" name="job_title" required></label><label>Hire Date<input type="date" name="hire_date" required></label><label>Supervisor<select name="supervisor_id"><option value="">Not assigned</option>{% for supervisor in supervisors %}<option value="{{ supervisor['id'] }}">{{ supervisor['full_name'] }}</option>{% endfor %}</select></label><label>Temporary Password<input type="password" name="temporary_password" required></label><button type="submit" class="primary-button">Create Employee</button>
+</form></aside>
+<script src="{{ url_for('static', filename='js/employees.js') }}"></script>
+{% endblock %}

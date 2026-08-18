@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Altrium PerformanceFlow{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+<aside class="nav-rail">
+    <div class="brand"><div class="brand-symbol">A</div><div class="brand-text"><strong>ALTRIUM</strong><span>PerformanceFlow</span></div></div>
+    <nav>
+        <a href="{{ url_for('dashboard') }}" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}">Dashboard</a>
+        {% if user_role == 'HR' %}<a href="{{ url_for('employees') }}" class="nav-link {% if request.endpoint == 'employees' %}active{% endif %}">Employees</a>{% endif %}
+        {% if user_role == 'Supervisor' %}<a href="{{ url_for('my_team') }}" class="nav-link {% if request.endpoint == 'my_team' %}active{% endif %}">My Team</a>{% endif %}
+        <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+    </nav>
+</aside>
+<main class="app-shell">
+    <header class="topbar"><div class="topbar-search">Search employees, reviews or cycles...</div><div class="topbar-user"><div class="avatar">{{ user_name[0]|upper }}</div><div><strong>{{ user_name }}</strong><span>{{ user_role }}</span></div></div></header>
+    <section class="page-content">{% block content %}{% endblock %}</section>
+</main>
+</body>
+</html>

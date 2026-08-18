@@ -1,11 +1,32 @@
-# Professional Practice Management Project
+# Altrium PerformanceFlow — 20% Checkpoint
 
-## Daily Work & Task Log
+This is an early GitHub checkpoint of the Employee Performance Review Management System.
 
-| Date | Team Member | Task / Activity Completed | Hours Spent | Notes / Commit Ref |
-| :--- | :--- | :--- | :--- | :--- |
-| Jul 21 | Dnsdumster | Set up GitHub Repository & README tracking log | 1 hr | Initial commit |
-| Jul 21 | Member 2 | Drafted project requirement outline | 2 hrs | - |
-| Jul 21 | Member 3 | Researched background and domain context | 1.5 hrs | - |
-| Jul 21 | Member 4 | Prepared system workflow and diagrams | 2 hrs | - |
+## Included
+- Flask + SQLite project structure
+- Role-based login/logout
+- HR dashboard
+- Employee directory
+- Create employee profiles
+- Assign supervisors
+- Basic Supervisor My Team page
+- Altrium corporate UI
 
+## Intentionally excluded
+The later Performance Blueprint, review cycle engine, activation snapshots, audit timelines, actions/notifications, self-assessment, peer review, supervisor evaluation, manager approval, PAR and PDP features are intentionally not included in this checkpoint.
+
+## Setup
+```bash
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -r requirements.txt
+python init_db.py
+python app.py
+```
+
+Open `http://127.0.0.1:5000`.
+
+Demo HR: `hr@altrium.com` / `Admin123!`  
+Demo Supervisor: `supervisor@altrium.com` / `Supervisor123!`
+
+Do not commit `.venv/`, `database.db`, or secret files.
